@@ -1,0 +1,68 @@
+/* Reset default margin and padding on all elements */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a background image for the page (replace 'background.jpg' with your image) */
+body {
+  background-image: url('https://images7.alphacoders.com/131/1319607.jpeg');
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+}
+
+/* Style the navigation bar */
+nav {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  margin: 0 1rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Style the home page content */
+.Home {
+  text-align: center;
+  padding: 2rem;
+}
+
+.Home h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.Home p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Style category pages (customize as needed) */
+.CategoryPage {
+  padding: 2rem;
+}
+
+.CategoryPage h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.CategoryPage p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
