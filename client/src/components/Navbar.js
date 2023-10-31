@@ -6,10 +6,11 @@ function Navbar() {
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/Planets">Planets</a></li>
-        <li><a href="/category2">Creatures</a></li>
-        <li><a href="/category3">People</a></li>
-        <li><a href="/category4">Organizations</a></li>
-        <li><a href="/category5">Vehicles and Spacecraft</a></li>
+        <li><a href="/Creatures">Creatures</a></li>
+        <li><a href="/People">People</a></li>
+        <li><a href="/Organizations">Organizations</a></li>
+        <li><a href="/Vehicles">Vehicles and Spacecraft</a></li>
+        <li><a href="/Items">Items</a></li>
       </ul>
     </nav>
   );

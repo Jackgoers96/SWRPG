@@ -17,8 +17,8 @@ function App() {
           <Route path="/Planets">
             <PlanetsPage />
           </Route>
-          <Route path="/category2">
-            <CategoryPage categoryName="Category 2" />
+          <Route path="/Creatures">
+            <CategoryPage categoryName="Creatures" />
           </Route>
           <Route path="/">
             <Home />

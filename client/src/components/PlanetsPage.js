@@ -12,7 +12,7 @@ function PlanetsPage() {
   }, []);
 
   return (
-    <div>
+    <div className='navbar'>
       <h1>Planets</h1>
       <ul>
         {planets.map((planet) => (
