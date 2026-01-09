@@ -1,26 +1,40 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors');
+const PlanetModel = require('./models/Planet');
 require('dotenv').config();
 
-const { typeDefs, resolvers } = require('./schemas');
-const { authMiddleware } = require('./utils/auth');
+// const { typeDefs, resolvers } = require('./schemas');
+// const { authMiddleware } = require('./utils/auth');
 
-const db = require('./config/connection');
+// const db = require('./config/connection');
 
-const PORT = process.env.PORT || 3001;
+// const PORT = process.env.PORT || 3000;
 const app = express();
+app.use(cors());
+app.use(express.json());
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: authMiddleware,
-});
+mongoose.connect("mongodb://localhost:3000/Planets");
 
-server.applyMiddleware({ app });
+app.listen(3001, () => {
+  console.log("App is listening on port 3001")
+})
+
+// const server = new ApolloServer({
+//   typeDefs,
+//   resolvers,
+//   context: authMiddleware,
+// });
+
+// server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+
+
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
@@ -29,13 +43,18 @@ if (process.env.NODE_ENV === 'production') {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-
-db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`API server running on port ${PORT}!`);
-    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-  });
+app.get('Planets', (req, res) => {
+  PlanetModel.find()
+    .then(Planets => res.json(Planets))
+    .catch(err => res.json(err))
 });
+
+// db.once('open', () => {
+//   app.listen(PORT, () => {
+//     console.log(`API server running on port ${PORT}!`);
+//     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+//   });
+// });
 
 
 

@@ -1,27 +1,20 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
 // const Snippet = require('./Snippet');
 
-const planetSchema = new Schema({
-  planetName: {
-    type: String,
-    required: "You need a title for this planet.",
-    trim: true
-  },
-
-  PlanetAuthor: {
-      type: String,
-      required: true,
-      trim: true
-  },
+const PlanetSchema = new mongoose.Schema({
+    name: String,
+    Ecosystem: String,
+    Habitable: String
+  }
   // snippets [
   //   {
   //     type: Schema.Types.ObjectId,
   //     ref: 'Snippet',
   //   },
   // ],
-})
+)
 
-const Planet = model('Planet', planetSchema);
+const PlanetModel = mongoose.model("planets", PlanetSchema);
 
-module.exports = Planet;
+module.exports = PlanetModel;
 

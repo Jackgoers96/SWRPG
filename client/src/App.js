@@ -5,8 +5,8 @@ import Navbar from './components/Navbar';
 import Encyclopedia from './components/Encyclopedia';
 import CategoryPage from './components/Category';
 import PlanetsPage from './components/PlanetsPage';
-import './App.css'
-
+import './App.css';
+import axios from 'axios';
 
 function App() {
   return (
