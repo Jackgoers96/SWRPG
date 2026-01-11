@@ -17,7 +17,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017/planet");
+async function start() {
+  try {
+    await mongoose.connect("mongodb://localhost:27017/planet");
+    console.log("Mongo connected");
+
+    app.listen(3001, () => {
+      console.log("App listening on 3001");
+    });
+  } catch (err) {
+    console.error("Mongo connection failed:", err);
+    process.exit(1);
+  }
+}
+
+start();
 
 // const server = new ApolloServer({
 //   typeDefs,
@@ -35,11 +49,13 @@ app.use("/api/Planets", planetRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
 }
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+
 
 // db.once('open', () => {
 //   app.listen(PORT, () => {
@@ -117,7 +133,3 @@ app.get('*', (req, res) => {
 // app.listen(port, () => {
 //   console.log(`Server is running on port ${port}`);
 // });
-
-app.listen(3001, () => {
-  console.log("App is listening on port 3001")
-})

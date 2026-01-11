@@ -25,7 +25,7 @@ export default function PlanetList() {
  // This method fetches the records from the database.
  useEffect(() => {
    async function getPlanets() {
-     const response = await fetch(`api/Planets/`);
+     const response = await fetch(`/api/Planets/`);
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
