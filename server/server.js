@@ -19,7 +19,7 @@ app.use(express.json());
 
 async function start() {
   try {
-    await mongoose.connect("mongodb://localhost:27017/planet");
+    await mongoose.connect("mongodb://localhost:27017/planets");
     console.log("Mongo connected");
 
     app.listen(3001, () => {
@@ -44,7 +44,7 @@ start();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use("/api/Planets", planetRouter);
+app.use("/api/planets", planetRouter);
 
 
 if (process.env.NODE_ENV === 'production') {
