@@ -21,4 +21,25 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const planetId = req.params.id;
+
+    const deleted = await PlanetModel.findByIdAndDelete(planetId);
+
+    if (!deleted) {
+      return res.status(404).json({ error: "Planet not found" });
+    }
+
+    // Option A: return the deleted document
+    return res.status(200).json(deleted);
+
+    // Option B (common): return no content
+    // return res.sendStatus(204);
+  } catch (err) {
+    console.error("delete error:", err);
+    return res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
