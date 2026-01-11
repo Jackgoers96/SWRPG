@@ -5,7 +5,8 @@ const path = require('path');
 const cors = require('cors');
 const PlanetModel = require('./models/Planet');
 const planetRouter = require("./routes/planetRoutes");
-require('dotenv').config();
+require("dotenv").config();
+
 
 // const { typeDefs, resolvers } = require('./schemas');
 // const { authMiddleware } = require('./utils/auth');
@@ -19,7 +20,7 @@ app.use(express.json());
 
 async function start() {
   try {
-    await mongoose.connect("mongodb://localhost:27017/planets");
+    await mongoose.connect(process.env.PLANET_SCHEMA);
     console.log("Mongo connected");
 
     app.listen(3001, () => {

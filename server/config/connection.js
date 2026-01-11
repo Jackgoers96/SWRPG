@@ -3,7 +3,7 @@ require('dotenv').config();
 
 
 mongoose.connect(
-  "mongodb://localhost:27017/planets",
+  process.env.PLANET_SCHEMA,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
