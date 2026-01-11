@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
 const PlanetModel = require('./models/Planet');
+const planetRouter = require("./routes/planetRoutes");
 require('dotenv').config();
 
 // const { typeDefs, resolvers } = require('./schemas');
@@ -16,11 +17,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:3000/Planets");
-
-app.listen(3001, () => {
-  console.log("App is listening on port 3001")
-})
+mongoose.connect("mongodb://localhost:27017/planet");
 
 // const server = new ApolloServer({
 //   typeDefs,
@@ -33,7 +30,7 @@ app.listen(3001, () => {
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-
+app.use("/api/Planets", planetRouter);
 
 
 if (process.env.NODE_ENV === 'production') {
@@ -42,11 +39,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
-app.get('Planets', (req, res) => {
-  PlanetModel.find()
-    .then(Planets => res.json(Planets))
-    .catch(err => res.json(err))
 });
 
 // db.once('open', () => {
@@ -125,3 +117,7 @@ app.get('Planets', (req, res) => {
 // app.listen(port, () => {
 //   console.log(`Server is running on port ${port}`);
 // });
+
+app.listen(3001, () => {
+  console.log("App is listening on port 3001")
+})

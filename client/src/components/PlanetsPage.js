@@ -25,7 +25,7 @@ export default function PlanetList() {
  // This method fetches the records from the database.
  useEffect(() => {
    async function getPlanets() {
-     const response = await fetch(`http://localhost:3000/Planets/`);
+     const response = await fetch(`api/Planets/`);
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -38,8 +38,6 @@ export default function PlanetList() {
    }
  
    getPlanets();
- 
-   return;
  }, [planets.length]);
  
  // This method will delete a record
